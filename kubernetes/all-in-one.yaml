@@ -1,0 +1,20 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: my-python-project
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: send
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: send
+            image: tftest/send
+            imagePullPolicy: IfNotPresent
+          restartPolicy: OnFailure
