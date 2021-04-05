@@ -1,6 +1,7 @@
 import pika
 
-connection = pika.BlockingConnection(pika.ConnectionParameters('rabbitmq'))
+credentials = pika.PlainCredentials('user', 'ESKjd49Wd2')
+connection = pika.BlockingConnection(pika.ConnectionParameters('rabbitmq',5672,'/',credentials))
 channel = connection.channel()
 
 channel.queue_declare(queue='hello')
